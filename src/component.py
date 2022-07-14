@@ -3,12 +3,9 @@ Extract media monitoring from Monitora
 
 The subscription of media monitoring is required in order
 to obtain a valid token.
-
-@todo: subscription add-on API
 '''
 import csv
 import logging
-from ssl import ALERT_DESCRIPTION_INTERNAL_ERROR
 import sys
 import requests
 import json
@@ -55,6 +52,7 @@ STATE_LAST_ID = 'LAST_ID'
 REQUIRED_PARAMETERS = [KEY_API_TOKEN, KEY_FEED_ID]
 REQUIRED_IMAGE_PARS = []
 
+
 def get_request(url, authorization_token, params=None):
     return requests.request(
         "GET",
@@ -65,6 +63,7 @@ def get_request(url, authorization_token, params=None):
         },
         params=params
     )
+
 
 def read_feed(api_token, topic_monitor_id, last_id):
     """ Get all data from feed that are not older than X """
