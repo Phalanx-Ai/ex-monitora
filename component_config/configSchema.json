@@ -1,17 +1,19 @@
 {
   "type": "object",
-  "title": "extractor configuration",
+  "title": "Parameters",
   "required": [
-    "print_hello"
+    "#api_token",
+    "feed_id"
   ],
   "properties": {
-    "print_hello": {
-      "type": "boolean",
-      "title": "Print Hello"
+    "#api_token": {
+      "type": "string",
+      "title": "Authorization Token",
+      "format": "password"
     },
-    "debug": {
-      "type": "boolean",
-      "title": "Debug"
+    "feed_id": {
+      "type": "string",
+      "title": "Feed ID"
     }
   }
 }
