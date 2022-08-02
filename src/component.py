@@ -164,7 +164,7 @@ class Component(ComponentBase):
 
             max_id = last_processed_id
             for a in flatten_articles:
-                writer.writerow(a)
+                writer.writerow(dict([(k, a.get(k, '')) for k in MONITORA_FIELDS]))
                 max_id = max(max_id, a['id'])
 
         self.write_manifest(table)
