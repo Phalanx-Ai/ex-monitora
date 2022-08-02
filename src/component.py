@@ -69,6 +69,7 @@ def read_feed(api_token, topic_monitor_id, last_id):
     """ Get all data from feed that are not older than X """
     articles = []
     next_page = None
+    logging.info("Downloading articles starting at %s" % (last_id + 1))
 
     response = get_request(
         "%s/%s" % (BASE_URL_READ_FEED, topic_monitor_id),
@@ -83,6 +84,8 @@ def read_feed(api_token, topic_monitor_id, last_id):
         new_articles = new_data['articles']
 
         articles += new_articles
+
+        logging.info("Downloading page with %d results" % (len(new_articles)))
 
         if not new_data['next_url']:
             break
@@ -165,6 +168,7 @@ class Component(ComponentBase):
                 max_id = max(max_id, a['id'])
 
         self.write_manifest(table)
+        logging.info("Last article ID was %s" % (max_id))
         self.write_state_file({STATE_LAST_ID: max_id})
 
 
