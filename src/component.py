@@ -90,9 +90,6 @@ def read_feed(api_token, topic_monitor_id, last_id):
         if not new_data['next_url']:
             break
 
-        if not (next_page is None):
-            break
-
         next_page = new_data['next_url']
 
         response = get_request(
