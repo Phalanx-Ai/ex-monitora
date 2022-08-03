@@ -40,7 +40,7 @@ MONITORA_FIELDS = [
     'issue', 'reach', 'GRP', 'OTS', 'AVE', 'topic_monitor_id', 'topic_monitor_name',
     'topic_monitor_image_url', 'keyword_monitors', 'article_tags', 'note',
     'discussion_thread_id', 'text', 'monthly_ru', 'publisher', 'daily_ru',
-    'monthly_sessions'
+    'monthly_sessions', 'sentiment_text'
 ]
 
 # Configuration variables
