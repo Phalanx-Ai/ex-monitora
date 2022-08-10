@@ -79,6 +79,13 @@ def read_feed(api_token, topic_monitor_id, last_id):
         }
     )
 
+    if response.status_code == 401:
+        logging.error("Authentication Failed")
+        sys.exit(1)
+    elif response.status_code == 404:
+        logging.error("Invalid Feed ID")
+        sys.exit(1)
+
     while True:
         new_data = json.loads(response.content)
         new_articles = new_data['articles']
