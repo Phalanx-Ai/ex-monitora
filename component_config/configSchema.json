@@ -9,11 +9,13 @@
     "#api_token": {
       "type": "string",
       "title": "Authorization Token",
-      "format": "password"
+      "format": "password",
+      "propertyOrder": 1
     },
     "feed_id": {
       "type": "string",
-      "title": "Feed ID"
+      "title": "Feed ID",
+      "propertyOrder": 2
     }
   }
 }
