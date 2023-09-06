@@ -9,6 +9,7 @@ import logging
 import sys
 import requests
 import json
+from datetime import date, timedelta
 
 from keboola.component.base import ComponentBase
 from keboola.component.exceptions import UserException
@@ -69,15 +70,31 @@ def read_feed(api_token, topic_monitor_id, last_id):
     """ Get all data from feed that are not older than X """
     articles = []
     next_page = None
-    logging.info("Downloading articles starting at %s" % (last_id + 1))
 
-    response = get_request(
-        "%s/%s" % (BASE_URL_READ_FEED, topic_monitor_id),
-        api_token,
-        {
-            'lower_id': last_id + 1
-        }
-    )
+    response = None
+
+    if last_id != 0:
+        logging.info("Downloading articles starting at %s" % (last_id + 1))
+
+        response = get_request(
+            "%s/%s" % (BASE_URL_READ_FEED, topic_monitor_id),
+            api_token,
+            {
+                'lower_id': last_id + 1
+            }
+        )
+    else:
+        logging.info("Download articles starting yesterday")
+
+        yesterday_date = date.today() - timedelta(1)
+
+        response = get_request(
+            "%s/%s" % (BASE_URL_READ_FEED, topic_monitor_id),
+            api_token,
+            {
+                'lower_date': yesterday_date
+            }
+        )
 
     if response.status_code == 401:
         print("Authentication Failed")
